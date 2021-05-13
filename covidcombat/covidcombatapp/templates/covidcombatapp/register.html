@@ -1,0 +1,33 @@
+{% extends "covidcombatapp/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <section class="page-section portfolio" id="portfolio">
+        <main role="main" class="container">
+            <div class="row">
+                <div class="col-md-6"><br>
+                <!-- Portfolio Section Heading-->
+                <form method="POST">
+                    {% csrf_token %}
+                    <fieldset class="form group">
+                        <legend class="border-bottom mb-4">Register</legend>
+                        {{ form|crispy }}
+                    </fieldset>
+                    <div class="form-group">
+                        <button class="btn btn-primary" type="submit" >Sign Up</button>
+                        <!-- <button class="btn btn-outline-info type="submit">Sign Up</button> -->
+                    </div>  
+                </form>
+                <div class="border-top pt-3">
+                    <small class="text-mutted">
+                        Already have an account? <a class="ml-2" href="#">Sign In</a>
+                    </small>                
+                </div>
+            </div>
+            <div class="col-md-4">
+                <br><h1>We are in this together</h1><br>
+                <h1>Together we can</h1>
+            </div>
+        </div>
+    </main>
+    </section>
+{% endblock content  %}    
