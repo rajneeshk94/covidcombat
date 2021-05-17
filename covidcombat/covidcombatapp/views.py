@@ -20,6 +20,7 @@ def register(request):
 		form = UserRegisterForm()
 	return render(request, 'covidcombatapp/register.html', { 'form': form })
 
+@login_required
 def examine(request):
 
 	record = Examine.objects.all().filter(Name = request.user.get_username())
@@ -35,6 +36,7 @@ def examine(request):
 		form = ExamineForm()
 	return render(request, 'covidcombatapp/examine.html', { 'form': form, 'record':record })
 
+@login_required
 def test(request):
 
 	record = Examine.objects.all().filter(Name = request.user.get_username())
