@@ -1,0 +1,160 @@
+{% extends "covidcombatapp/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+        <dialog id="Asymptomaticdialog">
+          <h8>It seems you are asymptomatic</h8>
+          <p>
+            Still keep following the safety norms and check yourself regularly here!
+          </p>
+          <button class="btn btn-primary" id="close">Continue</button>
+        </dialog>
+
+        <dialog id="Symptomaticdialog">
+          <h8>It seems you are symptomatic</h8>
+          <p>
+            It is advised that you take Covid-19 test
+          </p>
+          <button class="btn btn-primary" id="dclose">Cancel</button>
+        </dialog> 
+
+        {% if record.0.Name|length %}
+          
+          <section class="page-section portfolio" id="portfolio">
+        <main role="main" class="container"><br><br>
+
+                <!-- <iframe src="https://www.google.com/maps/d/embed?mid=1QwUS2D-LHKtPFi9oDLA98sZYXyDBekPp" width="1000" height="1200"></iframe> -->
+            <div class="row">
+                <div class="col-md-6"><br>
+                  <button class="btn btn-primary" onclick="location.href='{% url 'test' %}'">Click</button>
+                </div>
+            <div class="col-md-4">
+                <br><h1>We are in this together</h1><br>
+                <h1>Together we can</h1>
+            </div>
+        </div>
+    </main>
+    </section>
+
+        {% else %}
+          
+          <section class="page-section portfolio" id="portfolio">
+            <div class="container"><br>
+                <!-- Portfolio Section Heading-->
+                <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Examine your health</h2>
+                <!-- Icon Divider-->
+                <div class="divider-custom">
+                    <div class="divider-custom-line"></div>
+                    <div class="divider-custom-icon"><i class="fas fa-plus-circle"></i></div>
+                    <div class="divider-custom-line"></div>
+                </div>
+
+                <main role="main" class="container">
+              <div class="row">
+                  <div class="col-md-6"><br>
+            <form method="POST">
+                    {% csrf_token %}
+                        
+                        <input type="hidden" id="id_Name" name="Name" value="{{ user.get_username }}" readonly><br>
+                        
+                        <div id="div_id_temperature" class="form-group">
+                    <label for="id_temperature" class=" requiredField">
+                        Body Temperature(In Celcius)<span class="asteriskField">*</span>
+                    </label>
+                        <div class="">
+                            <input type="number" name="temperature" class="numberinput form-control" required="" id="id_temperature">
+                        </div>
+              </div>
+
+              <div class="form-group">
+                <div id="div_id_dry_cough" class="form-check">
+                    <input type="checkbox" name="dry_cough" class="checkboxinput form-check-input" id="id_dry_cough">
+                            
+                        <label for="id_dry_cough" class="form-check-label">
+                            Do you have dry cough?
+                        </label>
+                </div>
+                </div>
+
+                <div class="form-group">
+                <div id="div_id_taste" class="form-check">
+                          <input type="checkbox" name="taste" class="checkboxinput form-check-input" id="id_taste">        
+                        <label for="id_taste" class="form-check-label">
+                            Do you experience loss of taste?
+                        </label>
+                </div>
+                </div>
+
+                <div class="form-group">
+                <div id="div_id_breathless" class="form-check">
+                    <input type="checkbox" name="breathless" class="checkboxinput form-check-input" id="id_breathless">
+                        <label for="id_breathless" class="form-check-label">
+                            Do you feel breathless?
+                        </label>
+                </div>
+                </div>
+
+                        <button id="submit" type="submit" class="btn btn-primary">Submit</button>
+                </form>
+                </div>
+                <div class="col-md-4">
+                  <br><h6>1. Check your body temperature and enter the value in celcius degree</h6><br>
+                  <h6>2. Enter other details</h6><br>
+                  <h6>3. Click Submit</h6><br>
+                  <h6>4. Proceed according to your results</h6>
+              </div>
+                </div>
+                </main>           
+            </div>
+        </section>
+
+        {% endif %}
+
+        <script>
+        	
+        	function examine(){
+        		var temperature = {{ record.0.temperature }};
+        		var cough = "\"{{ record.0.dry_cough }}\"";
+            var taste = "\"{{ record.0.taste }}\"";
+            var breathless = "\"{{ record.0.breathless }}\"";  
+            
+            if (temperature > 38 && cough == "\"True\"" && taste == "\"True\"" && breathless == "\"True\""){
+              alert("It seems you are symptomatic. It is advised you take a Covid-19 test and come back with results.");
+            }
+            
+            else if(temperature > 38 && cough == "\"True\"" && taste == "\"True\""){
+              alert("It seems you are symptomatic. It is advised you take a Covid-19 test and come back with results.");
+            }
+
+            else if(temperature > 38 && taste == "\"True\"" && breathless == "\"True\""){
+              alert("It seems you are symptomatic. It is advised you take a Covid-19 test and come back with results.");
+            }
+
+            else if(temperature > 38 && cough == "\"True\"" && breathless == "\"True\""){
+              alert("It seems you are symptomatic. It is advised you take a Covid-19 test and come back with results.");
+            }
+
+            else if(cough == "\"True\"" && taste == "\"True\"" && breathless == "\"True\""){
+              alert("It seems you are symptomatic. It is advised you take a Covid-19 test and come back with results.");
+            }
+
+            else if(cough == "\"True\"" && taste == "\"True\""){
+              alert("It seems you are symptomatic. It is advised you take a Covid-19 test and come back with results.");
+            }
+
+            else if(taste == "\"True\"" && breathless == "\"True\""){
+              alert("It seems you are symptomatic. It is advised you take a Covid-19 test and come back with results.");
+            }
+
+            else if(cough == "\"True\"" && breathless == "\"True\""){
+              alert("It seems you are symptomatic. It is advised you take a Covid-19 test and come back with results.");
+            }
+
+            else{
+              alert("You look fine. Come back and take a test later if you feel discomfort.");
+            }
+
+        	}
+        </script>
+
+{% endblock content %}
