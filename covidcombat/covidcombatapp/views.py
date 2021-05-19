@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from .forms import UserRegisterForm, ExamineForm
-from . models import Examine
+from .forms import UserRegisterForm, ExamineForm, FinalTestForm
+from . models import Examine, FinalTest
 
 def home(request):
 	return render(request, 'covidcombatapp/home.html')
@@ -31,10 +31,35 @@ def examine(request):
 		if form.is_valid():
 			form.save()
 			Name = form.cleaned_data.get('Name')
+			temperature = request.POST.get('temperature')
+			dry_cough = form.cleaned_data.get('dry_cough')
+			taste = form.cleaned_data.get('taste')
+			breathless = form.cleaned_data.get('breathless')
+			
+			if(int(temperature) <= 38 and dry_cough == False and taste == False
+					and breathless == False):
+				if len(record) > 0:
+					record[0].delete()
+				messages.success(request, f'You seem absolutely fine! Come back later and take a test if you feel unwell.')	
+				return redirect('examine')		
+
 			return redirect('examine')
 	else:	
 		form = ExamineForm()
-	return render(request, 'covidcombatapp/examine.html', { 'form': form, 'record':record })
+
+	if request.method == 'POST':
+		form_final = FinalTestForm(request.POST)
+		
+		if form_final.is_valid():
+			form_final.save()
+			Name = form_final.cleaned_data.get('Name')
+			return redirect('examine')
+	else:	
+		form_final = FinalTestForm()	
+
+	return render(request, 'covidcombatapp/examine.html', { 'form': form, 
+															'form_final':form_final, 
+															'record':record })
 
 @login_required
 def test(request):

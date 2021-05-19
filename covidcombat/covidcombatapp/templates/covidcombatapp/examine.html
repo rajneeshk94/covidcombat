@@ -1,22 +1,7 @@
 {% extends "covidcombatapp/base.html" %}
 {% load crispy_forms_tags %}
 {% block content %}
-
-        <dialog id="Asymptomaticdialog">
-          <h8>It seems you are asymptomatic</h8>
-          <p>
-            Still keep following the safety norms and check yourself regularly here!
-          </p>
-          <button class="btn btn-primary" id="close">Continue</button>
-        </dialog>
-
-        <dialog id="Symptomaticdialog">
-          <h8>It seems you are symptomatic</h8>
-          <p>
-            It is advised that you take Covid-19 test
-          </p>
-          <button class="btn btn-primary" id="dclose">Cancel</button>
-        </dialog> 
+ 
 
         {% if record.0.Name|length %}
           
@@ -26,11 +11,53 @@
                 <!-- <iframe src="https://www.google.com/maps/d/embed?mid=1QwUS2D-LHKtPFi9oDLA98sZYXyDBekPp" width="1000" height="1200"></iframe> -->
             <div class="row">
                 <div class="col-md-6"><br>
-                  <button class="btn btn-primary" onclick="location.href='{% url 'test' %}'">Click</button>
+                  <form method="POST">
+                    <input type="hidden" name="csrfmiddlewaretoken" value="MuG5s3eUk82ODUUmtJJmYH5k8mX1hLfEONI1LnTk6XBv2m3aqKG24WCkWgiENYBs">
+                    <fieldset class="form group">
+                        <legend class="border-bottom mb-4">Fill in the below details</legend>
+                         
+                          <div class=""> 
+                            <input type="hidden" name="Name" maxlength="20" class="textinput textInput form-control" required="" id="id_Name" value="{{ user.get_username }}" readonly> 
+                          </div> 
+
+                        <div id="div_id_test_result" class="form-group"> 
+                          <label for="id_test_result" class=" requiredField">
+                            Enter your Covid-19 test result<span class="asteriskField">*</span> 
+                          </label> 
+                          <div class=""> 
+                            <select name="test_result" class="select form-control" required="" id="id_test_result"> 
+                              <option value="" selected="">---------</option> 
+                              <option value="Positive">Positive</option> 
+                              <option value="Negative">Negative</option>
+                            </select> 
+                          </div> 
+                        </div> 
+                        <br>
+                        <div id="div_id_oxygen_level" class="form-group">
+                          <label for="id_oxygen_level" class=" requiredField">
+                            Enter your SpO<sub>2</sub> level (Oxygen level)<span class="asteriskField">*</span>
+                          </label> 
+                          <div class=""> 
+                            <select name="oxygen_level" class="select form-control" required="" id="id_oxygen_level"> <option value="" selected="">---------</option> <option value="95 or above">95 or above</option> <option value="Below 95">Below 95</option>
+                            </select> 
+                          </div> 
+                        </div>
+
+                    </fieldset>
+                    <div class="form-group">
+                        <button class="btn btn-primary" type="submit">Next</button>
+                    </div>  
+                  </form>
+
+                  <!-- <button class="btn btn-primary" onclick="location.href='{% url 'test' %}'">Click</button> -->
                 </div>
             <div class="col-md-4">
-                <br><h1>We are in this together</h1><br>
-                <h1>Together we can</h1>
+                <br><h1>What Next ?</h1><br>
+                <h5>1. Get a Covid-19 test done from a nearby centre</h5>
+                <br><h5>2. Enter your test result here.</h5>
+                <br><h5>3. Check your oxygen level with an Oximeter</h5>
+                <br><h5>4. Fill the oxygen level field with correct range.</h5>
+                <br><h5>5. Click on next to get further instructions.</h5>
             </div>
         </div>
     </main>
@@ -41,6 +68,15 @@
           <section class="page-section portfolio" id="portfolio">
             <div class="container"><br>
                 <!-- Portfolio Section Heading-->
+
+                {% if messages %}
+                    {% for message in messages%}
+                        <div class="alert alert-{{ message.tags }}">
+                            {{ message }}
+                        </div>
+                    {% endfor%}
+                {% endif %}
+
                 <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Examine your health</h2>
                 <!-- Icon Divider-->
                 <div class="divider-custom">
@@ -62,7 +98,7 @@
                         Body Temperature(In Celcius)<span class="asteriskField">*</span>
                     </label>
                         <div class="">
-                            <input type="number" name="temperature" class="numberinput form-control" required="" id="id_temperature">
+                            <input type="number" name="temperature" class="numberinput form-control" required="" id="id_temperature" min="35" max="45">
                         </div>
               </div>
 
@@ -150,8 +186,25 @@
               alert("It seems you are symptomatic. It is advised you take a Covid-19 test and come back with results.");
             }
 
+            else if(temperature > 38 && cough == "\"True\""){
+              alert("It seems you are symptomatic. It is advised you take a Covid-19 test and come back with results.");
+            }
+
+            else if(temperature > 38 && taste == "\"True\""){
+              alert("It seems you are symptomatic. It is advised you take a Covid-19 test and come back with results.");
+            }
+
+            else if(temperature > 38 && breathless == "\"True\""){
+              alert("It seems you are symptomatic. It is advised you take a Covid-19 test and come back with results.");
+            }
+
+            else if(temperature > 38){
+              alert("It seems you are symptomatic. It is advised you take a Covid-19 test and come back with results.");
+            }    
+
             else{
               alert("You look fine. Come back and take a test later if you feel discomfort.");
+              // window.location.href = "http://www.w3schools.com";
             }
 
         	}
