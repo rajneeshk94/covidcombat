@@ -1,0 +1,83 @@
+{% extends "covidcombatapp/base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+{% if final_record.0.test_result == 'Positive' and final_record.0.oxygen_level == '95 or above' %}
+	<section class="page-section portfolio" id="portfolio">
+	            <br><div class="container">
+	            	<div class="alert alert-danger">
+	                    As per your oxygen level, we recommend you to consult a doctor and ask for home quarantine. Further follow the below routine during the home quarantine period.
+	                </div>    
+	                <!-- Portfolio Section Heading-->
+	                <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Remedy</h2>
+	                <!-- Icon Divider-->
+	                <div class="divider-custom">
+	                    <div class="divider-custom-line"></div>
+	                    <div class="divider-custom-icon"><i class="fas fa-plus-circle"></i></div>
+	                    <div class="divider-custom-line"></div>
+	                </div>
+	                
+	                <!-- Portfolio Grid Items-->
+	                <div class="row justify-content-center">
+	                    <!-- Portfolio Item 1-->
+	                    <div class="col-md-6 col-lg-4 mb-5">
+	                        <div class="portfolio-item mx-auto" data-toggle="modal" data-target="#portfolioModal1">
+	                            <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+	                                <div class="portfolio-item-caption-content text-center text-white"><svg class="svg-inline--fa fa-plus fa-w-14 fa-3x" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="plus" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"></path></svg><!-- <i class="fas fa-plus fa-3x"></i> Font Awesome fontawesome.com --></div>
+	                            </div>
+	                            <img class="img-fluid" src="{% static 'covidcombatapp/assets/img/portfolio/medicine.jpg' %}" alt="...">
+	                        </div>
+	                        <h4 style="padding-left: 95px;">Medication</h4>
+	                    </div>
+	                    <!-- Portfolio Item 2-->
+	                    <div class="col-md-6 col-lg-4 mb-5">
+	                        <div class="portfolio-item mx-auto" data-toggle="modal" data-target="#portfolioModal2">
+	                            <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+	                                <div class="portfolio-item-caption-content text-center text-white"><svg class="svg-inline--fa fa-plus fa-w-14 fa-3x" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="plus" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"></path></svg><!-- <i class="fas fa-plus fa-3x"></i> Font Awesome fontawesome.com --></div>
+	                            </div>
+	                            <img class="img-fluid" src="{% static 'covidcombatapp/assets/img/portfolio/chart.jpg' %}" alt="...">
+	                        </div>
+	                        <h4 style="padding-left: 110px;">Diet Plan</h4>
+	                    </div>
+	                    <!-- Portfolio Item 3-->
+	                    <div class="col-md-6 col-lg-4 mb-5">
+	                        <div class="portfolio-item mx-auto" data-toggle="modal" data-target="#portfolioModal3">
+	                            <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+	                                <div class="portfolio-item-caption-content text-center text-white"><svg class="svg-inline--fa fa-plus fa-w-14 fa-3x" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="plus" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"></path></svg><!-- <i class="fas fa-plus fa-3x"></i> Font Awesome fontawesome.com --></div>
+	                            </div>
+	                            <img class="img-fluid" src="{% static 'covidcombatapp/assets/img/portfolio/exercise.jpg' %}" alt="...">
+	                        </div>
+	                        <h4 style="padding-left: 60px;">Fitness Regimen</h4>
+	                    </div><br>
+	                    <h5>Take a Covid-19 test again after 14 days and examine yourself again by clicking on the button below</h5>
+	                </div>
+	                <div style="padding-left: 500px;">
+	                    <br>	
+	            		<button class="btn btn-primary" onclick="location.href='{% url 'test' %}'">Retest</button>
+	                </div>
+	            </div>
+    </section>
+
+{% elif final_record.0.test_result == 'Positive' and final_record.0.oxygen_level == 'Below 95' %}
+
+	<section class="page-section portfolio" id="portfolio">
+	            <br><div class="container">
+	            	<div class="alert alert-danger">
+	                    Hospitalize
+	                </div>    
+	                <!-- Portfolio Section Heading-->
+	                <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Remedy</h2>
+	                <!-- Icon Divider-->
+	                <div class="divider-custom">
+	                    <div class="divider-custom-line"></div>
+	                    <div class="divider-custom-icon"><i class="fas fa-plus-circle"></i></div>
+	                    <div class="divider-custom-line"></div>
+	                </div>
+	                
+	            </div>
+    </section>
+
+{% endif %}
+
+{% endblock content  %}

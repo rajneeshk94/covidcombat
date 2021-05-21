@@ -24,6 +24,7 @@ def register(request):
 def examine(request):
 
 	record = Examine.objects.all().filter(Name = request.user.get_username())
+	final_record = FinalTest.objects.all().filter(Name = request.user.get_username())
 
 	if request.method == 'POST':
 		form = ExamineForm(request.POST)
@@ -53,9 +54,18 @@ def examine(request):
 		if form_final.is_valid():
 			form_final.save()
 			Name = form_final.cleaned_data.get('Name')
-			return redirect('examine')
+			test_result = request.POST.get('test_result')
+
+			if test_result == 'Negative':
+				messages.success(request, f'You seem absolutely fine! Come back later and take a test if you feel unwell.')
+				return redirect('test')
+				
+			return redirect('recovery')
 	else:	
 		form_final = FinalTestForm()	
+
+	if len(final_record) > 0:
+		return render(request, 'covidcombatapp/recovery.html')
 
 	return render(request, 'covidcombatapp/examine.html', { 'form': form, 
 															'form_final':form_final, 
@@ -65,9 +75,13 @@ def examine(request):
 def test(request):
 
 	record = Examine.objects.all().filter(Name = request.user.get_username())
+	final_record = FinalTest.objects.all().filter(Name = request.user.get_username())
 
 	if len(record) > 0:
 		record[0].delete()
+
+	if len(final_record) > 0:
+		final_record[0].delete()	
 	
 	if request.method == 'POST':
 		form = ExamineForm(request.POST)
@@ -78,4 +92,11 @@ def test(request):
 			return redirect('examine')
 	else:	
 		form = ExamineForm()
-	return render(request, 'covidcombatapp/examine.html', { 'form': form })		
+	return render(request, 'covidcombatapp/examine.html', { 'form': form })
+
+@login_required
+def recovery(request):
+
+	final_record = FinalTest.objects.all().filter(Name = request.user.get_username())
+
+	return render(request, 'covidcombatapp/recovery.html', { 'final_record': final_record })		
