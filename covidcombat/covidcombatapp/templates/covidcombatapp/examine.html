@@ -5,11 +5,31 @@
 
         {% if record.0.Name|length %}
           
-          <section class="page-section portfolio" id="portfolio">
+          <section class="page-section portfolio" id="portfolio" style="padding-left: 150px;">
         <main role="main" class="container"><br><br>
 
-                <!-- <iframe src="https://www.google.com/maps/d/embed?mid=1QwUS2D-LHKtPFi9oDLA98sZYXyDBekPp" width="1000" height="1200"></iframe> -->
-            <div class="row">
+            <div class="row" style="height: 500px; width: 1000px;
+              transform-style: preserve-3d;
+              border-radius: 32px;
+              box-shadow:
+                1px 1px 0 1px #f9f9fb,
+                -1px 0 28px 0 rgba(34, 33, 81, 0.01),
+                28px 28px 28px 0 rgba(34, 33, 81, 0.25);
+              transition:
+                .4s ease-in-out transform,
+                .4s ease-in-out box-shadow;
+
+              &:hover {
+                transform:
+                  translate3d(0px, -16px, 0px)
+                  rotateX(51deg)
+                  rotateZ(43deg);
+                box-shadow:
+                  1px 1px 0 1px #f9f9fb,
+                  -1px 0 28px 0 rgba(34, 33, 81, 0.01),
+                  54px 54px 28px -10px rgba(34, 33, 81, 0.15);
+              
+              }">
                 <div class="col-md-6"><br>
                   <form method="POST">
                     {% csrf_token %}
@@ -48,10 +68,9 @@
                         <button class="btn btn-primary" type="submit">Next</button>
                     </div>  
                   </form>
-
-                  <!-- <button class="btn btn-primary" onclick="location.href='{% url 'test' %}'">Click</button> -->
                 </div>
-            <div class="col-md-4">
+
+            <div class="col-md-6">
                 <br><h1>What Next ?</h1><br>
                 <h5>1. Get a Covid-19 test done from a nearby centre</h5>
                 <br><h5>2. Enter your test result here.</h5>
@@ -59,7 +78,27 @@
                 <br><h5>4. Fill the oxygen level field with correct range.</h5>
                 <br><h5>5. Click on next to get further instructions.</h5>
             </div>
+
         </div>
+        <br>
+
+        <section class="page-section portfolio" id="portfolio">
+              <br><div class="container">
+                  <!-- Portfolio Section Heading-->
+                  <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Testing Centers</h2>
+                  <!-- Icon Divider-->
+                  <div class="divider-custom">
+                      <div class="divider-custom-line"></div>
+                      <div class="divider-custom-icon"><i class="fas fa-plus-circle"></i></div>
+                      <div class="divider-custom-line"></div>
+                  </div>
+                  <h5 style="padding-left: 10px;">Enter your current location or postal code below to get details of nearby testing centers</h5>
+                  <div style="padding-right: 100px;">
+                    <iframe width="100%" height="425" src="https://maps.mapmyindia.com/covid-places/embed?category=HSPTST" allow="geolocation" >
+                    </iframe>
+                  </div>
+              </div>
+    </section>
     </main>
     </section>
 
@@ -84,10 +123,34 @@
                     <div class="divider-custom-icon"><i class="fas fa-plus-circle"></i></div>
                     <div class="divider-custom-line"></div>
                 </div>
-
+                <div style="padding-left: 200px;">
                 <main role="main" class="container">
               <div class="row">
-                  <div class="col-md-6"><br>
+                  <div class="col-md-10" style="height: 350px; width: 500px;
+              transform-style: preserve-3d;
+              border-radius: 32px;
+              box-shadow:
+                1px 1px 0 1px #f9f9fb,
+                -1px 0 28px 0 rgba(34, 33, 81, 0.01),
+                28px 28px 28px 0 rgba(34, 33, 81, 0.25);
+              transition:
+                .4s ease-in-out transform,
+                .4s ease-in-out box-shadow;
+
+              &:hover {
+                transform:
+                  translate3d(0px, -16px, 0px)
+                  rotateX(51deg)
+                  rotateZ(43deg);
+                box-shadow:
+                  1px 1px 0 1px #f9f9fb,
+                  -1px 0 28px 0 rgba(34, 33, 81, 0.01),
+                  54px 54px 28px -10px rgba(34, 33, 81, 0.15);
+              
+              }"><br>
+              <table>
+                <tr>
+                  <td style="width: 250px;">
             <form method="POST">
                     {% csrf_token %}
                         
@@ -132,15 +195,22 @@
 
                         <button id="submit" type="submit" class="btn btn-primary">Submit</button>
                 </form>
-                </div>
-                <div class="col-md-4">
-                  <br><h6>1. Check your body temperature and enter the value in celcius degree</h6><br>
-                  <h6>2. Enter other details</h6><br>
-                  <h6>3. Click Submit</h6><br>
-                  <h6>4. Proceed according to your results</h6>
+              </td>
+              <td>
+                <div class="col-md-12" style="padding-left: 100px;">
+                  <br><br><h6>1. Check your body temperature and enter the value in celcius degree.</h6><br>
+                  <h6>2. Enter other details.</h6><br>
+                  <h6>3. Click Submit.</h6><br>
+                  <h6>4. Proceed according to your results.</h6>
               </div>
+              </td>
+            </tr>
+          </table>
                 </div>
-                </main>           
+                
+                </div>
+                </main> 
+                </div>          
             </div>
         </section>
 
@@ -204,7 +274,6 @@
 
             else{
               alert("You look fine. Come back and take a test later if you feel discomfort.");
-              // window.location.href = "http://www.w3schools.com";
             }
 
         	}

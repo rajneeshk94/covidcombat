@@ -65,7 +65,7 @@ def examine(request):
 		form_final = FinalTestForm()	
 
 	if len(final_record) > 0:
-		return render(request, 'covidcombatapp/recovery.html')
+		return redirect('recovery')
 
 	return render(request, 'covidcombatapp/examine.html', { 'form': form, 
 															'form_final':form_final, 
@@ -99,4 +99,8 @@ def recovery(request):
 
 	final_record = FinalTest.objects.all().filter(Name = request.user.get_username())
 
-	return render(request, 'covidcombatapp/recovery.html', { 'final_record': final_record })		
+	return render(request, 'covidcombatapp/recovery.html', { 'final_record': final_record })
+
+def vaccination(request):
+	
+	return render(request, 'covidcombatapp/vaccination.html')	

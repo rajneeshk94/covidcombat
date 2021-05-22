@@ -9,9 +9,31 @@
             </div>
         {% endfor%}
     {% endif %}
-        <main role="main" class="container">
-            <div class="row">
-                <div class="col-md-6"><br>
+    	<br><br>
+        <main role="main" class="container" style="padding-left: 400px;">
+            <div class="row" style="height: 425px; width: 400px;
+						  transform-style: preserve-3d;
+						  border-radius: 32px;
+						  box-shadow:
+						    1px 1px 0 1px #f9f9fb,
+						    -1px 0 28px 0 rgba(34, 33, 81, 0.01),
+						    28px 28px 28px 0 rgba(34, 33, 81, 0.25);
+						  transition:
+						    .4s ease-in-out transform,
+						    .4s ease-in-out box-shadow;
+
+						  &:hover {
+						    transform:
+						      translate3d(0px, -16px, 0px)
+						      rotateX(51deg)
+						      rotateZ(43deg);
+						    box-shadow:
+						      1px 1px 0 1px #f9f9fb,
+						      -1px 0 28px 0 rgba(34, 33, 81, 0.01),
+						      54px 54px 28px -10px rgba(34, 33, 81, 0.15);
+						  
+						  }">
+                <div class="col-md-12" >
                 <!-- Portfolio Section Heading-->
                 <form method="POST">
 				{% csrf_token %}
@@ -32,6 +54,8 @@
 				</small>			
 			</div>
 	        </div>
+	    </div>
+	    <!-- </div> -->
     </main>
     </section>
 {% endblock content  %}

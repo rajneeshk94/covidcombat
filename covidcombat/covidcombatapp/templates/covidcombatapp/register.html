@@ -1,9 +1,31 @@
 {% extends "covidcombatapp/base.html" %}
 {% load crispy_forms_tags %}
 {% block content %}
+    <br>
     <section class="page-section portfolio" id="portfolio">
-        <main role="main" class="container">
-            <div class="row">
+        <main role="main" class="container" style="padding-left: 100px;">
+            <div class="row" style="height: 850px; width: 1000px;
+                          transform-style: preserve-3d;
+                          border-radius: 32px;
+                          box-shadow:
+                            1px 1px 0 1px #f9f9fb,
+                            -1px 0 28px 0 rgba(34, 33, 81, 0.01),
+                            28px 28px 28px 0 rgba(34, 33, 81, 0.25);
+                          transition:
+                            .4s ease-in-out transform,
+                            .4s ease-in-out box-shadow;
+
+                          &:hover {
+                            transform:
+                              translate3d(0px, -16px, 0px)
+                              rotateX(51deg)
+                              rotateZ(43deg);
+                            box-shadow:
+                              1px 1px 0 1px #f9f9fb,
+                              -1px 0 28px 0 rgba(34, 33, 81, 0.01),
+                              54px 54px 28px -10px rgba(34, 33, 81, 0.15);
+                          
+                          }">
                 <div class="col-md-6"><br>
                 <!-- Portfolio Section Heading-->
                 <form method="POST">
@@ -14,7 +36,6 @@
                     </fieldset>
                     <div class="form-group">
                         <button class="btn btn-primary" type="submit" >Sign Up</button>
-                        <!-- <button class="btn btn-outline-info type="submit">Sign Up</button> -->
                     </div>  
                 </form>
                 <div class="border-top pt-3">
@@ -23,9 +44,10 @@
                     </small>                
                 </div>
             </div>
-            <div class="col-md-4">
-                <br><h1>We are in this together</h1><br>
-                <h1>Together we can</h1>
+            <div class="col-md-6" style="text-align: center;">
+                <p style="padding-bottom: 300px;"><h3>We lost</h3><br>
+                <h2>We suffered</h2><br>
+                <h1>But we keep fighting</h1></p>
             </div>
         </div>
     </main>
