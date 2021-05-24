@@ -1,7 +1,7 @@
-![FLOWW](https://user-images.githubusercontent.com/58133068/119310978-21993a00-bc8e-11eb-880a-47001f9cc7a9.png)
+
 # covidcombat
 ## Description: 
-abahahahjakhsjsusjsnns
+
 ## Hardware and Software Requirements: 
 ### Software
 The software requirements enlisted in the below file
@@ -11,7 +11,8 @@ The software requirements enlisted in the below file
 ### Hardware : A working Desktop
 
 ## Process Flow:
-https://github.com/rajneeshk94/covidcombat/issues/1#issue-899360483
+![Picture1](https://user-images.githubusercontent.com/58133068/119311097-455c8000-bc8e-11eb-9e8c-9b9ad27c963d.png)
 
 ## Data Flow Diagram:
-17jshshshsbsh
+![FLOWW](https://user-images.githubusercontent.com/58133068/119311054-383f9100-bc8e-11eb-9b4d-ac6b9133cb8d.png)
+
