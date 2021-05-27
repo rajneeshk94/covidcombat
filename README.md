@@ -2,7 +2,7 @@
 # CovidCombat
 ## Description: 
 The idea is provide a user service, where a user can examine his health, prepare himself against covid and incase of any emergency get treated as well.
-So, its an ALL IN ONE platform where a person can get full information to deal with COVID-19 ,starting from examining your own heath to getting vaccinated.
+So, its an ALL IN ONE platform where a person can get full information to deal with COVID-19 starting from examining your own health to getting vaccinated.
 
 ## Hardware and Software Requirements: 
 ### Software
